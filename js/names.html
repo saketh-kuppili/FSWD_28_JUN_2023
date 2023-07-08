@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names</title>
+   
+</head>
+<body>
+    <h1>Names</h1>
+    Name : <input type="text" id="txtName" />
+    <p></p>
+    <button onclick="addName()">Add Name</button>
+    <button onclick="showNames()">Show Names</button>
+
+    <script>
+        var names = []
+        var tname = document.getElementById("txtName")
+ 
+        function addName()
+        {
+           names.push(tname.value)
+        }
+ 
+        function showNames() {
+           alert(names)
+        }
+     </script>
+     
+</body>
+</html>
