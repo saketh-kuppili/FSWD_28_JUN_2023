@@ -4,28 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Names</title>
-   
+    
 </head>
 <body>
     <h1>Names</h1>
     Name : <input type="text" id="txtName" />
     <p></p>
     <button onclick="addName()">Add Name</button>
-    <button onclick="showNames()">Show Names</button>
+    <button onclick="deleteName()">Delete Name</button>
 
+    <ul id="names">
+
+    </ul>
+    
     <script>
-        var names = []
-        var tname = document.getElementById("txtName")
- 
-        function addName()
-        {
-           names.push(tname.value)
-        }
- 
-        function showNames() {
-           alert(names)
-        }
-     </script>
+      var names = []
+      var tname = document.getElementById("txtName")
+      var ulNames = document.getElementById("names")
+
+      function showNames() {
+          var bullets = ""
+          for(let name of names)
+          {
+             bullets += `<li>${name}</li>`
+          }
+
+          ulNames.innerHTML = bullets;
+      }
+
+      function addName()
+      {
+         if(names.includes(tname.value))
+             alert("Sorry! Duplicate name!")
+         else {
+             names.push(tname.value)
+             showNames();
+         }
+      }
+
+      function deleteName()
+      {
+         var pos = names.indexOf(tname.value)
+         if(pos == -1)
+             alert("Sorry! Name not found!")
+         else {
+             names.splice(pos,1)
+             showNames();
+         }
+      }
+
      
+   </script>
 </body>
 </html>
