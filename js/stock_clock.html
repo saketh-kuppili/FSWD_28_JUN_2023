@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Clock</title>
+    <script>
+        var seconds = 0;
+        var id = null;
+
+        function startClock() {
+            id = setInterval(showClock, 1000);
+        }
+
+        function showClock() {
+            seconds ++;
+            document.getElementById("clock").innerHTML = seconds;
+        }
+
+        function stopClock() {
+            clearInterval(id);
+        }
+    </script>
+</head>
+<body>
+    <h2>Stock Clock</h2>
+    <h1 id="clock"></h1>
+    <button onclick="startClock()">Start</button>
+    <button onclick="stopClock()">Stop</button>
+
+    <script>
+
+        document.getElementById("clock").innerHTML = seconds;
+    </script>
+    
+</body>
+</html>

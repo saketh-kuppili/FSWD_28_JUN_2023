@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names</title>
+</head>
+
+<body>
+    Name : <input type="text" id="txtName" />
+    <p></p>
+    <button onclick="addName()">Add</button>
+    <p></p>
+    <ul id="names">
+    </ul>
+
+    <script>
+        var txtName = document.getElementById("txtName")
+        var ulNames = document.getElementById("names")
+  
+        function addName() {
+            let name = txtName.value
+  
+            var names = localStorage.getItem("names")
+            if (names != null)
+                names += "," + name 
+            else
+                names = name
+
+            localStorage.setItem("names", names)
+            showNames();
+        }
+
+        function showNames() {
+            names = localStorage.getItem("names")
+            if (names != null) {
+                let output = ""
+                names.split(",").forEach(v => output += `<li>${v}</li>`)
+                ulNames.innerHTML = output
+            }
+        }
+
+        showNames();
+
+    </script>
+    </script>
+
+</html>
