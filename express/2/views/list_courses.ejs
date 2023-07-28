@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Courses</title>
+  </head>
+  <body>
+    <h1>Courses</h1>
+    <ul>
+      <% courses.forEach( c => { %>
+        <li>
+          <%= c.title + ":" + c.fee.toString() %>
+        </li>
+        <% }) %>
+    </ul>
+  </body>
+</html>
