@@ -9,7 +9,11 @@ app.set('view engine', 'ejs');
 
 module.exports = app;
 
-let courses = [{ title: 'Python', fee: 10000 }, { title: 'Full-stack Web Development', fee: 20000 }]
+let courses = [
+    { title: 'Python', fee: 10000 },
+    { title: 'Full-stack Web Development', fee: 20000 },
+    { title: 'AWS', fee: 10000 }
+  ]
 
 app.get("/today", (req, res) => {
   res.render('today', { today : new Date() })
@@ -17,7 +21,8 @@ app.get("/today", (req, res) => {
 )
 
 app.get('/courses', (req, res) => {
-  res.render('list_courses', { courses: courses })
+  res.render('list_courses', 
+       { courses: courses, trainer : 'Srikanth Pragada' })
 })
 
 app.listen(port, () => {

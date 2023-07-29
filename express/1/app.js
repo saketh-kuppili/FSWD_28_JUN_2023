@@ -23,6 +23,21 @@ app.get('/wishing/:msg/:user', (req, res) => {
   res.send(result)
 })
  
+app.get("/now", (req, res) => {
+  if(req.query.part)
+    {
+      let part = req.query.part 
+      console.log(part)
+      if (part === 'date')
+          res.send("Date")
+      else
+          res.send("Time")
+    } 
+    else
+        res.send("Both");
+})
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

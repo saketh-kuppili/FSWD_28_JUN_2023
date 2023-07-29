@@ -5,12 +5,13 @@
   </head>
   <body>
     <h1>Courses</h1>
+    <h2>Trainers : <%= trainer %> </h2>
     <ul>
       <% courses.forEach( c => { %>
         <li>
           <%= c.title + ":" + c.fee.toString() %>
         </li>
-        <% }) %>
+      <% }) %>
     </ul>
   </body>
 </html>
