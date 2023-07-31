@@ -32,7 +32,8 @@ app.post('/interest', (req, res) => {
 
 
 app.get('/interest2', (req, res) => {
-  res.render('interest2', {amount : 0, rate : 0, interest : undefined})
+  res.render('interest2', 
+     {amount : 0, rate : 0, interest : undefined})
 })
 
 app.post('/interest2', (req, res) => {
