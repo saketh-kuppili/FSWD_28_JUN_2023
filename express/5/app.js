@@ -1,16 +1,18 @@
 var express = require('express');
 var path = require('path');
 
+const port = 8888
+var app = express();
+
 var adminRouter = require('./admin');
 app.use('/admin', adminRouter);
 
-const port = 8888
-var app = express();
- 
-module.exports = app;
+//app.use('/root', adminRouter);
+
+
 
 app.get("/", (req, res) => {
-  res.end("<h1>Main Router</h1>")
+  res.send("<h1>Main Router</h1>")
 }
 )
  

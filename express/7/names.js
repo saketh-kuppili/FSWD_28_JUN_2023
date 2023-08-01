@@ -7,7 +7,6 @@ var session = require('express-session')
 
 app.use(session({
   name: 'sessionid',           // cookie name to store session id 
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
   resave: false, 
   secret: 'abc',               // key to sign cookie
   saveUninitialized : false
