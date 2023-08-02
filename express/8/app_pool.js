@@ -29,7 +29,8 @@ app.get('/add', (req, res) => {
 })
 
 app.post('/add', (req, res) => {
-  var query = pool.query("insert into departments values(?,?)", [req.body.deptid, req.body.deptname],
+  var query = pool.query("insert into departments values(?,?)",
+     [req.body.deptid, req.body.deptname],
     function (err, result) { 
       if (err)  
         res.send(`<h1>Error while adding department. Error : ${err.sqlMessage}`)

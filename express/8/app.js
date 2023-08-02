@@ -25,18 +25,38 @@ app.get('/depts', (req, res) => {
   );
 })
 
+app.get('/depts/delete/:dept', (req, res) => {
+    res.send("Deleting...")
+})
+
+
+
+app.get('/employees/:dept', (req, res) => {
+
+  var query = con.query("select * from employees where dept_id = ?",
+    [req.params.dept],
+    function (err, employees) {
+      if (err) throw err;
+     
+      res.render('listemp', 
+          { emps : employees, 
+            dept : req.params.dept })
+    }
+  );
+})
 
 app.get('/add', (req, res) => {
   res.render('adddept')
 })
 
 app.post('/add', (req, res) => {
-  var query = con.query("insert into departments values(?,?)", [req.body.deptid, req.body.deptname],
+  var query = con.query("insert into departments values(?,?)",
+              [req.body.deptid, req.body.deptname],
     function (err, result) {
       if (err) throw err;
       res.send(`<h1>Added Department ${req.body.deptname} Successfully!!`)
     }
-  );
+  ); 
 })
 
 
