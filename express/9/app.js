@@ -7,6 +7,7 @@ var app = express();
 function logger(req, res, next) {
   //console.log(req)
   console.log("URL : " + req.originalUrl)
+  console.log("URL : " + req.baseUrl + req.path)
   next()
 }
 
