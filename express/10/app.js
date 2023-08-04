@@ -25,7 +25,7 @@ app.get('/depts/:id', (req, res) => {
   var query = pool.query("select * from departments where dept_id = ?",
     [req.params.id],
     function (err, departments) {
-      console.log(departments)
+      //console.log(departments)
       if (err) {
         res.status(500).send('Error :' + err.message)
       }
@@ -45,7 +45,6 @@ app.delete('/depts/:id', (req, res) => {
   var query = pool.query("delete from departments where dept_id = ?",
     [req.params.id],
     function (err, result) {
-      console.log(result)
       if (err) {
         res.status(500).send('Error :' + err.message)
       }
@@ -54,32 +53,51 @@ app.delete('/depts/:id', (req, res) => {
         if(result.affectedRows === 0)
            res.status(404).send("Department Id Not Found!")
         else
-           res.status(204)
+           res.sendStatus(204)  // no content 
       }
     }
   );
 })
 
 
-/*
-
-app.get('/add', (req, res) => {
-  res.render('adddept')
-})
-
-app.post('/add', (req, res) => {
+app.post('/depts', (req, res) => {
   var query = pool.query("insert into departments values(?,?)",
-     [req.body.deptid, req.body.deptname],
+    [req.body.id, req.body.name],
     function (err, result) { 
       if (err)  
-        res.send(`<h1>Error while adding department. Error : ${err.sqlMessage}`)
+        res.status(500).send('Error :' + err.message)
       else
-        res.send(`<h1>Added Department ${req.body.deptname} Successfully!!`)
+        res.status(201).send("Department added successfully!");
     }
   );
 })
 
-*/
+// UPDATE 
+app.put('/depts/:id', (req, res) => {
+  // validate data 
+  let name = req.body.name 
+  if(!name || name.length == 0) {
+      res.status(400).send("Name is missing!")
+      return;
+  }
+ 
+  var query = pool.query("update departments set dept_name = ? where dept_id = ?",
+    [req.body.name, req.params.id],
+    function (err, result) { 
+      if (err)  
+        res.status(500).send('Error :' + err.message)
+      else
+      {
+        if(result.affectedRows === 0)
+           res.status(404).send("Department Id Not Found!")
+        else
+           res.json({id : req.params.id, name : req.body.name})
+      }
+    }
+  );
+})
+
+
 
 app.listen(port, () => {
   console.log(`REST APi at port ${port}`)
