@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import CourseList from './pc/CourseList';
+import Languages from './state/Languages';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <CourseList />
+       <Languages />
   </React.StrictMode>
 );
 
