@@ -16,11 +16,12 @@ function AddQuote({ addQuote }) {
     )
 }
 
-function ListQuotes({ quotes, deleteQuote }) {
+function ListQuotes({quotes, deleteQuote }) {
 
     function deleteOneQuote(idx) {
-        console.log('Deleting ' + idx)
-        deleteQuote(idx)
+        if (window.confirm('Do you want to delete?')) {
+            deleteQuote(idx)
+        }
     }
 
     return (
@@ -56,7 +57,7 @@ export default function Quotes() {
             <AddQuote addQuote={addQuote} />
             <p></p>
             <hr />
-            <ListQuotes quotes={quotes} deleteQuote = {deleteQuote} />
+            <ListQuotes quotes={quotes} deleteQuote={deleteQuote} />
         </>
     )
 }
