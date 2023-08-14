@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import GitUserInfo from './ajax/GitUserInfo';
+import Main from './routing/Main';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-       <GitUserInfo />
+       <Main />
   </React.StrictMode>
 );
 
