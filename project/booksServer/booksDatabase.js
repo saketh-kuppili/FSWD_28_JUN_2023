@@ -38,7 +38,8 @@ async function addBook(title, author, price) {
 }
 
 async function updateBook(id, book) {
-    let [result, fields] =  await pool.query("update books set title = ?, author = ?, price = ? where id = ?", [book.title, book.author, book.price, id])
+    let [result, fields] =  await pool.query("update books set title = ?, author = ?, price = ? where id = ?", 
+                               [book.title, book.author, book.price, id])
     console.log(result)
     if (result.affectedRows === 1)
         return true
@@ -47,9 +48,8 @@ async function updateBook(id, book) {
 }
 
 async function deleteBook(id) {
-    let result = await pool.execute("delete from books where id = ?", [id])
-    console.log(result)
-    if (result[0].affectedRows == 1)
+    let [result, fields] = await pool.execute("delete from books where id = ?", [id])
+    if (result.affectedRows == 1)
         return true;
     else
         return false; 
