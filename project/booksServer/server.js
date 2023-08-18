@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require("path")
 var handlers = require("./restHandlers")
 var cors = require('cors')
 
@@ -7,10 +8,11 @@ var app = express();
 app.use(express.json());
 app.use(cors())
 
-// static files config
+app.use(express.static(path.join(__dirname, 'build')));
 
-//app.use(express.static('dist', { index: 'index.html' }))
-
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.get('/books', handlers.getBooks) 
 app.get('/books/author', handlers.getBooksByAuthor)
